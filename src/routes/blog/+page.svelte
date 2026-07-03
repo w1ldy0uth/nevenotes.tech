@@ -1,0 +1,29 @@
+<script lang="ts">
+	import type { PageData } from './$types';
+
+	let { data }: { data: PageData } = $props();
+</script>
+
+<svelte:head>
+	<title>Blog</title>
+</svelte:head>
+
+<main class="mx-auto max-w-2xl px-4 py-8">
+	<h1 class="text-2xl font-semibold">Blog</h1>
+
+	<ul class="mt-6 flex flex-col gap-4">
+		{#each data.posts as post (post.slug)}
+			<li>
+				<a href="/blog/{post.slug}" class="text-lg underline">{post.title}</a>
+				<p class="text-sm text-gray-500">
+					{post.publishedAt ? new Date(post.publishedAt).toLocaleDateString() : ''}
+				</p>
+				{#if post.excerpt}
+					<p class="text-sm">{post.excerpt}</p>
+				{/if}
+			</li>
+		{:else}
+			<li class="text-sm text-gray-500">No posts yet.</li>
+		{/each}
+	</ul>
+</main>
