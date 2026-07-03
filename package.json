@@ -42,6 +42,8 @@
 		"vite": "^8.0.16"
 	},
 	"dependencies": {
-		"drizzle-orm": "^0.45.2"
+		"drizzle-orm": "^0.45.2",
+		"marked": "^18.0.5",
+		"shiki": "^4.3.1"
 	}
 }

@@ -1,0 +1,60 @@
+<script lang="ts">
+	import { enhance } from '$app/forms';
+
+	let {
+		note,
+		error
+	}: {
+		note?: { slug: string; title: string; bodyMd: string };
+		error?: string;
+	} = $props();
+</script>
+
+<form method="POST" action="?/save" use:enhance class="flex flex-col gap-3">
+	<label class="flex flex-col gap-1">
+		<span class="text-sm">Title</span>
+		<input
+			type="text"
+			name="title"
+			required
+			value={note?.title ?? ''}
+			class="rounded border px-3 py-2"
+		/>
+	</label>
+
+	<label class="flex flex-col gap-1">
+		<span class="text-sm">Slug</span>
+		<input
+			type="text"
+			name="slug"
+			required
+			value={note?.slug ?? ''}
+			class="rounded border px-3 py-2"
+		/>
+	</label>
+
+	<label class="flex flex-col gap-1">
+		<span class="text-sm">Body (Markdown)</span>
+		<textarea name="bodyMd" required rows="16" class="rounded border px-3 py-2 font-mono text-sm"
+			>{note?.bodyMd ?? ''}</textarea
+		>
+	</label>
+
+	{#if error}
+		<p class="text-sm text-red-600">{error}</p>
+	{/if}
+
+	<div class="flex items-center gap-3">
+		<button type="submit" class="rounded bg-black px-3 py-2 text-white">Save</button>
+
+		{#if note}
+			<button
+				type="submit"
+				formaction="?/delete"
+				class="rounded border border-red-600 px-3 py-2 text-red-600"
+			>
+				Delete
+			</button>
+		{/if}
+	</div>
+</form>
