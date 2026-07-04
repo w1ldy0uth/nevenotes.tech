@@ -9,7 +9,9 @@
 </svelte:head>
 
 <main class="mx-auto max-w-2xl px-4 py-8">
-	<h1 class="text-2xl font-semibold">Notes</h1>
+	<a href="/" class="text-sm underline">&larr; Home</a>
+
+	<h1 class="mt-4 text-2xl font-semibold">Notes</h1>
 
 	<ul class="mt-6 flex flex-col gap-3">
 		{#each data.notes as note (note.slug)}
