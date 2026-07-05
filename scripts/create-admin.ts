@@ -1,6 +1,5 @@
 import { db } from '../src/lib/server/db';
 import { users } from '../src/lib/server/db/schema';
-import { hashPassword } from '../src/lib/server/auth';
 
 const [email, password] = process.argv.slice(2);
 
@@ -9,7 +8,7 @@ if (!email || !password) {
 	process.exit(1);
 }
 
-const passwordHash = await hashPassword(password);
+const passwordHash = await Bun.password.hash(password, { algorithm: 'argon2id' });
 
 await db.insert(users).values({ email, passwordHash });
 

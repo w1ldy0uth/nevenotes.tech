@@ -18,6 +18,7 @@ COPY --from=build /app/build ./build
 COPY package.json ./
 COPY scripts ./scripts
 COPY drizzle ./drizzle
+COPY src/lib/server/db ./src/lib/server/db
 
 EXPOSE 3000
 CMD ["bun", "./build/index.js"]
