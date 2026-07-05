@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: minio-create-bucket-{{ .Release.Revision }}
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "0"
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+spec:
+  backoffLimit: 3
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: mc
+          image: minio/mc:latest
+          command:
+            - /bin/sh
+            - -c
+            - |
+              mc alias set local http://minio:9000 {{ .Values.minio.rootUser }} {{ .Values.minio.rootPassword }} &&
+              mc mb --ignore-existing local/{{ .Values.minio.bucket }} &&
+              mc anonymous set download local/{{ .Values.minio.bucket }}

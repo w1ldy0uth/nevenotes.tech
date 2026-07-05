@@ -1,0 +1,7 @@
+# Copy this to values-local.yaml (gitignored — never commit real credentials) and adjust.
+
+postgres:
+  password: nevenotes
+
+minio:
+  rootPassword: nevenotes123

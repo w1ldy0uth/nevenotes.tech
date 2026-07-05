@@ -1,0 +1,6 @@
+apiVersion: v2
+name: infra
+description: Postgres + MinIO for a single-node personal cluster (mirrors docker-compose.yml). Not for multi-node production use — see nevenotes-tech chart's assumption that these already exist as external infra in a real cluster.
+type: application
+version: 0.1.0
+appVersion: "0.1.0"

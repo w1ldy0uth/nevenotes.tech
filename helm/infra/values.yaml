@@ -1,0 +1,15 @@
+postgres:
+  image: postgres:17-alpine
+  user: nevenotes
+  password: ''
+  database: nevenotes
+  storage: 5Gi
+  storageClassName: hostpath
+
+minio:
+  image: minio/minio:latest
+  rootUser: nevenotes
+  rootPassword: ''
+  bucket: nevenotes
+  storage: 5Gi
+  storageClassName: hostpath

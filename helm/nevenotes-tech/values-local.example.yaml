@@ -1,0 +1,16 @@
+# Example values for deploying against the helm/infra chart's in-cluster Postgres + MinIO
+# (Docker Desktop Kubernetes, single-node personal setup). Copy this to values-local.yaml
+# (gitignored — don't commit real credentials) and adjust as needed.
+
+origin: http://localhost:8080 # see port-forward note below; use your real domain once you have ingress+TLS
+
+ingress:
+  enabled: false # no ingress controller in a bare Docker Desktop cluster by default;
+  # use `kubectl port-forward svc/nevenotes 8080:80` to access it instead
+
+secret:
+  databaseUrl: postgres://nevenotes:nevenotes@postgres:5432/nevenotes
+  s3Endpoint: http://minio:9000
+  s3AccessKeyId: nevenotes
+  s3SecretAccessKey: nevenotes123
+  s3Bucket: nevenotes
