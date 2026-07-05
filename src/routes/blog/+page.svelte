@@ -7,12 +7,16 @@
 
 <svelte:head>
 	<title>Blog</title>
+	<link rel="alternate" type="application/rss+xml" title="nevenotes.tech — Blog" href="/blog/rss.xml" />
 </svelte:head>
 
 <main class="mx-auto max-w-2xl px-4 py-8">
 	<a href="/" class="text-sm underline">&larr; Home</a>
 
-	<h1 class="mt-4 text-2xl font-semibold">Blog</h1>
+	<div class="mt-4 flex items-center justify-between">
+		<h1 class="text-2xl font-semibold">Blog</h1>
+		<a href="/blog/rss.xml" class="text-sm underline">RSS</a>
+	</div>
 
 	<div class="mt-6">
 		<SearchBox type="post" basePath="/blog" />

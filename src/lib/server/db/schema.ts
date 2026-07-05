@@ -1,6 +1,7 @@
 import { pgTable, serial, text, timestamp, integer, primaryKey, pgEnum } from 'drizzle-orm/pg-core';
 
 export const postStatus = pgEnum('post_status', ['draft', 'published']);
+export const resumeLanguage = pgEnum('resume_language', ['en', 'ru']);
 
 export const users = pgTable('users', {
 	id: serial('id').primaryKey(),
@@ -79,3 +80,10 @@ export const noteTags = pgTable(
 	},
 	(table) => [primaryKey({ columns: [table.noteId, table.tagId] })]
 );
+
+export const resumes = pgTable('resumes', {
+	language: resumeLanguage('language').primaryKey(),
+	url: text('url').notNull(),
+	filename: text('filename').notNull(),
+	updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow()
+});

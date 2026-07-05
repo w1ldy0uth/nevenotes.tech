@@ -1,4 +1,8 @@
 <script lang="ts">
+	import type { PageData } from './$types';
+
+	let { data }: { data: PageData } = $props();
+
 	const stack = [
 		{
 			category: 'Languages',
@@ -200,6 +204,18 @@
 
 	<details class="mt-6 border-t pt-6">
 		<summary class="cursor-pointer text-xl font-semibold">Experience</summary>
+
+		{#if data.resumeEn || data.resumeRu}
+			<div class="mt-6 flex gap-4">
+				{#if data.resumeEn}
+					<a href={data.resumeEn} class="text-sm underline" target="_blank">Resume (EN)</a>
+				{/if}
+				{#if data.resumeRu}
+					<a href={data.resumeRu} class="text-sm underline" target="_blank">Resume (RU)</a>
+				{/if}
+			</div>
+		{/if}
+
 		<ul class="mt-6 flex flex-col gap-6">
 			{#each experience as job (job.role + job.company + job.period)}
 				<li>

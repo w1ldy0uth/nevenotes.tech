@@ -23,5 +23,6 @@
 		<a href="/admin/notes" class="rounded border px-4 py-2 text-sm">Manage notes</a>
 		<a href="/admin/projects" class="rounded border px-4 py-2 text-sm">Manage projects</a>
 		<a href="/admin/tags" class="rounded border px-4 py-2 text-sm">Manage tags</a>
+		<a href="/admin/resume" class="rounded border px-4 py-2 text-sm">Manage resume</a>
 	</div>
 </main>
