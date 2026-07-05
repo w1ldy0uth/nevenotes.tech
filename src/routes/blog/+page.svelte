@@ -1,4 +1,5 @@
 <script lang="ts">
+	import SearchBox from '$lib/components/SearchBox.svelte';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -13,7 +14,11 @@
 
 	<h1 class="mt-4 text-2xl font-semibold">Blog</h1>
 
-	<ul class="mt-6 flex flex-col gap-4">
+	<div class="mt-6">
+		<SearchBox type="post" basePath="/blog" />
+	</div>
+
+	<ul class="flex flex-col gap-4">
 		{#each data.posts as post (post.slug)}
 			<li>
 				<a href="/blog/{post.slug}" class="text-lg underline">{post.title}</a>
