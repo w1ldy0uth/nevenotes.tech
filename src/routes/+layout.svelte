@@ -3,6 +3,7 @@
 	import favicon from '$lib/assets/favicon.svg';
 	import Footer from '$lib/components/Footer.svelte';
 	import Sidebar from '$lib/components/Sidebar.svelte';
+	import MobileNav from '$lib/components/MobileNav.svelte';
 	import { page } from '$app/state';
 	import type { Snippet } from 'svelte';
 	import type { LayoutData } from './$types';
@@ -14,6 +15,9 @@
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 <div class="flex min-h-screen flex-col">
+	{#if showSidebar}
+		<MobileNav locale={data.locale} />
+	{/if}
 	<div class="mx-auto flex w-full max-w-5xl flex-1">
 		{#if showSidebar}
 			<Sidebar locale={data.locale} />
