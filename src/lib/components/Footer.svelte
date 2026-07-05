@@ -1,30 +1,25 @@
 <script lang="ts">
-	const socials = [
-		{ label: 'X', href: 'https://x.com/nevenoke' },
-		{ label: 'LinkedIn', href: 'https://www.linkedin.com/in/ivan-shurygin' },
-		{ label: 'Telegram', href: 'https://t.me/nevenoke' }
-	];
+	import { t, type Locale } from '$lib/i18n';
+
+	let { locale }: { locale: Locale } = $props();
+
+	let tr = $derived(t(locale));
 </script>
 
-<footer class="mx-auto max-w-2xl px-4 py-8 text-sm text-gray-500">
-	<div class="flex gap-4">
-		{#each socials as social (social.label)}
-			<a href={social.href} class="underline" target="_blank" rel="noreferrer noopener">
-				{social.label}
-			</a>
-		{/each}
-	</div>
-
-	<p class="mt-4">
+<footer class="mx-auto max-w-2xl px-4 py-10 text-sm text-ink-soft">
+	<p>
 		<a
 			href="https://github.com/w1ldy0uth/nevenotes.tech"
-			class="underline"
+			class="font-medium text-coral-dark hover:underline"
 			target="_blank"
-			rel="noreferrer noopener">Made by</a
+			rel="noreferrer noopener">{tr.footer.madeBy}</a
 		>
-		Ivan 'w1ldy0uth' Shurygin. Powered by
-		<a href="https://svelte.dev" class="underline" target="_blank" rel="noreferrer noopener"
-			>SvelteKit</a
+		Ivan 'w1ldy0uth' Shurygin. {tr.footer.poweredBy}
+		<a
+			href="https://svelte.dev"
+			class="font-medium text-coral-dark hover:underline"
+			target="_blank"
+			rel="noreferrer noopener">SvelteKit</a
 		>.
 	</p>
 </footer>

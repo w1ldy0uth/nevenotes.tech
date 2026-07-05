@@ -62,8 +62,8 @@
 
 <div class="flex flex-col gap-2">
 	<div class="flex items-center justify-between">
-		<span class="text-sm">Body (Markdown)</span>
-		<label class="cursor-pointer text-sm underline">
+		<span class="text-sm text-ink-soft">Body (Markdown)</span>
+		<label class="cursor-pointer text-sm font-medium text-coral-dark hover:underline">
 			{uploading ? 'Uploading…' : 'Upload image'}
 			<input
 				type="file"
@@ -86,10 +86,10 @@
 			{name}
 			required
 			{rows}
-			class="rounded border px-3 py-2 font-mono text-sm"
+			class="rounded-lg bg-cream-100 px-3 py-2 font-mono text-sm outline-none focus:ring-2 focus:ring-coral"
 		></textarea>
 
-		<div class="prose prose-sm max-w-none overflow-auto rounded border px-3 py-2">
+		<div class="prose prose-sm prose-neutral dark:prose-invert max-w-none overflow-auto rounded-lg bg-cream-100 px-3 py-2">
 			{@html previewHtml}
 		</div>
 	</div>

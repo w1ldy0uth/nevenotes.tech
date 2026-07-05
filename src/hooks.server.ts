@@ -7,6 +7,9 @@ import {
 } from '$lib/server/auth';
 
 export const handle: Handle = async ({ event, resolve }) => {
+	const localeCookie = event.cookies.get('locale');
+	event.locals.locale = localeCookie === 'ru' ? 'ru' : 'en';
+
 	const token = getSessionToken(event);
 
 	if (!token) {

@@ -10,8 +10,8 @@
 </svelte:head>
 
 <main class="mx-auto max-w-2xl px-4 py-8">
-	<a href="/admin/projects" class="text-sm underline">&larr; Projects</a>
-	<h1 class="mt-4 mb-6 text-xl font-semibold">New project</h1>
+	<a href="/admin/projects" class="text-sm font-medium text-coral-dark hover:underline">&larr; Projects</a>
+	<h1 class="mt-4 mb-6 text-xl font-bold text-ink">New project</h1>
 
 	<ProjectForm error={form?.error} />
 </main>

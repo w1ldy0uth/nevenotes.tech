@@ -1,2 +1,81 @@
 @import 'tailwindcss';
+@import '@fontsource-variable/manrope';
 @plugin '@tailwindcss/typography';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+	--font-sans: 'Manrope Variable', ui-sans-serif, system-ui, sans-serif;
+
+	--color-cream: #fdf8f3;
+	--color-cream-100: #f7ede2;
+	--color-surface: #ffffff;
+	--color-ink: #2b241d;
+	--color-ink-soft: #6b5f52;
+
+	--color-coral: #ff6b5b;
+	--color-coral-dark: #e2543f;
+	--color-amber: #f5a623;
+
+	--shadow-warm: 0 8px 24px -8px rgb(43 36 29 / 0.18);
+	--shadow-warm-sm: 0 4px 12px -4px rgb(43 36 29 / 0.14);
+}
+
+:root.dark {
+	--color-cream: #15110d;
+	--color-cream-100: #3b2f23;
+	--color-surface: #261f18;
+	--color-ink: #f2e9de;
+	--color-ink-soft: #c3b3a3;
+
+	--color-coral: #ff8272;
+	--color-coral-dark: #ff9c8f;
+}
+
+html {
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+	display: none;
+}
+
+body {
+	background-color: var(--color-cream);
+	color: var(--color-ink);
+}
+
+:root.dark .shadow-warm {
+	box-shadow: 0 8px 24px -8px rgb(0 0 0 / 0.6);
+}
+
+:root.dark .shadow-warm-sm {
+	box-shadow: 0 4px 12px -4px rgb(0 0 0 / 0.5);
+}
+
+:root[data-accent='green'] {
+	--color-coral: #22a06b;
+	--color-coral-dark: #178a5a;
+}
+:root[data-accent='blue'] {
+	--color-coral: #3b82f6;
+	--color-coral-dark: #2563eb;
+}
+:root[data-accent='violet'] {
+	--color-coral: #8b5cf6;
+	--color-coral-dark: #7c3aed;
+}
+
+:root.dark[data-accent='green'] {
+	--color-coral: #34d399;
+	--color-coral-dark: #6ee7b7;
+}
+:root.dark[data-accent='blue'] {
+	--color-coral: #60a5fa;
+	--color-coral-dark: #93c5fd;
+}
+:root.dark[data-accent='violet'] {
+	--color-coral: #a78bfa;
+	--color-coral-dark: #c4b5fd;
+}

@@ -1,7 +1,10 @@
 <script lang="ts">
+	import { t } from '$lib/i18n';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
+
+	let tr = $derived(t(data.locale));
 </script>
 
 <svelte:head>
@@ -9,24 +12,30 @@
 </svelte:head>
 
 <main class="mx-auto max-w-2xl px-4 py-8">
-	<a href="/blog" class="text-sm underline">&larr; Blog</a>
+	<a href="/blog" class="text-sm font-medium text-coral-dark hover:underline">&larr; {tr.blog.title}</a>
 
-	<h1 class="mt-4 text-2xl font-semibold">{data.title}</h1>
-	<p class="text-sm text-gray-500">
-		{data.publishedAt ? new Date(data.publishedAt).toLocaleDateString() : ''}
-	</p>
+	<div class="mt-6 rounded-2xl bg-surface p-8 shadow-warm">
+		<h1 class="text-2xl font-bold text-ink">{data.title}</h1>
+		<p class="text-sm text-ink-soft">
+			{data.publishedAt
+				? new Date(data.publishedAt).toLocaleDateString(data.locale === 'ru' ? 'ru-RU' : 'en-US')
+				: ''}
+		</p>
 
-	<div class="prose mt-6 max-w-none">
-		{@html data.html}
+		<div class="prose prose-neutral dark:prose-invert mt-6 max-w-none">
+			{@html data.html}
+		</div>
+
+		{#if data.tags.length > 0}
+			<ul class="mt-6 flex flex-wrap gap-2">
+				{#each data.tags as tag (tag.slug)}
+					<li>
+						<a href="/tags/{tag.slug}" class="rounded-full bg-cream-100 px-3 py-1 text-sm text-ink"
+							>{tag.name}</a
+						>
+					</li>
+				{/each}
+			</ul>
+		{/if}
 	</div>
-
-	{#if data.tags.length > 0}
-		<ul class="mt-6 flex flex-wrap gap-2">
-			{#each data.tags as tag (tag.slug)}
-				<li>
-					<a href="/tags/{tag.slug}" class="rounded-full border px-3 py-1 text-sm">{tag.name}</a>
-				</li>
-			{/each}
-		</ul>
-	{/if}
 </main>

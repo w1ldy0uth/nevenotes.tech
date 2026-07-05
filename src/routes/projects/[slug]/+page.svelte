@@ -1,7 +1,10 @@
 <script lang="ts">
+	import { t } from '$lib/i18n';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
+
+	let tr = $derived(t(data.locale));
 </script>
 
 <svelte:head>
@@ -9,20 +12,28 @@
 </svelte:head>
 
 <main class="mx-auto max-w-2xl px-4 py-8">
-	<a href="/projects" class="text-sm underline">&larr; Projects</a>
+	<a href="/projects" class="text-sm font-medium text-coral-dark hover:underline"
+		>&larr; {tr.projects.title}</a
+	>
 
-	<h1 class="mt-4 text-2xl font-semibold">{data.project.title}</h1>
+	<div class="mt-6 rounded-2xl bg-surface p-8 shadow-warm">
+		<h1 class="text-2xl font-bold text-ink">{data.project.title}</h1>
 
-	{#if data.project.description}
-		<p class="mt-4">{data.project.description}</p>
-	{/if}
-
-	<div class="mt-4 flex gap-4 text-sm">
-		{#if data.project.repoUrl}
-			<a href={data.project.repoUrl} class="underline">Repo</a>
+		{#if data.project.description}
+			<p class="mt-4 text-ink">{data.project.description}</p>
 		{/if}
-		{#if data.project.liveUrl}
-			<a href={data.project.liveUrl} class="underline">Live</a>
-		{/if}
+
+		<div class="mt-4 flex gap-4 text-sm">
+			{#if data.project.repoUrl}
+				<a href={data.project.repoUrl} class="font-medium text-coral-dark hover:underline"
+					>{tr.projects.repo}</a
+				>
+			{/if}
+			{#if data.project.liveUrl}
+				<a href={data.project.liveUrl} class="font-medium text-coral-dark hover:underline"
+					>{tr.projects.live}</a
+				>
+			{/if}
+		</div>
 	</div>
 </main>
