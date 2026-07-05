@@ -9,7 +9,9 @@
 </svelte:head>
 
 <main class="mx-auto max-w-2xl px-4 py-8">
-	<div class="flex items-center justify-between">
+	<a href="/admin" class="text-sm underline">&larr; Admin</a>
+
+	<div class="mt-4 flex items-center justify-between">
 		<h1 class="text-xl font-semibold">Notes</h1>
 		<a href="/admin/notes/new" class="text-sm underline">New note</a>
 	</div>

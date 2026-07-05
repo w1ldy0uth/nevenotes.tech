@@ -11,18 +11,23 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	if (!token) {
 		event.locals.user = null;
-		return resolve(event);
-	}
-
-	const { session, user } = await validateSessionToken(token);
-
-	if (session) {
-		setSessionTokenCookie(event, token, session.expiresAt);
 	} else {
-		deleteSessionTokenCookie(event);
+		const { session, user } = await validateSessionToken(token);
+
+		if (session) {
+			setSessionTokenCookie(event, token, session.expiresAt);
+		} else {
+			deleteSessionTokenCookie(event);
+		}
+
+		event.locals.user = user;
 	}
 
-	event.locals.user = user;
+	const response = await resolve(event);
 
-	return resolve(event);
+	if (response.headers.get('content-type')?.includes('text/html')) {
+		response.headers.set('cache-control', 'no-store');
+	}
+
+	return response;
 };

@@ -17,4 +17,10 @@
 	</div>
 
 	<p class="mt-4 text-sm">Signed in as {data.user?.email}</p>
+
+	<div class="mt-6 flex gap-3">
+		<a href="/admin/posts" class="rounded border px-4 py-2 text-sm">Manage posts</a>
+		<a href="/admin/notes" class="rounded border px-4 py-2 text-sm">Manage notes</a>
+		<a href="/admin/projects" class="rounded border px-4 py-2 text-sm">Manage projects</a>
+	</div>
 </main>
