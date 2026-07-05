@@ -12,7 +12,9 @@
 </svelte:head>
 
 <main class="mx-auto max-w-2xl px-4 py-8">
-	<a href="/notes" class="text-sm font-medium text-coral-dark hover:underline">&larr; {tr.notes.title}</a>
+	<a href="/notes" class="text-sm font-medium text-coral-dark hover:underline"
+		>&larr; {tr.notes.title}</a
+	>
 
 	<div class="mt-6 rounded-2xl bg-surface p-8 shadow-warm">
 		<h1 class="text-2xl font-bold text-ink">{data.title}</h1>
@@ -21,6 +23,7 @@
 		</p>
 
 		<div class="prose prose-neutral dark:prose-invert mt-6 max-w-none">
+			<!-- eslint-disable-next-line svelte/no-at-html-tags -- server-rendered markdown, admin-authored only -->
 			{@html data.html}
 		</div>
 

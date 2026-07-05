@@ -3,11 +3,8 @@
 
 	type Result = { slug: string; title: string; snippet: string };
 
-	let {
-		type,
-		basePath,
-		locale
-	}: { type: 'post' | 'note'; basePath: string; locale: Locale } = $props();
+	let { type, basePath, locale }: { type: 'post' | 'note'; basePath: string; locale: Locale } =
+		$props();
 
 	let tr = $derived(t(locale));
 
@@ -56,7 +53,10 @@
 						<a href="{basePath}/{result.slug}" class="font-semibold text-ink hover:text-coral-dark"
 							>{result.title}</a
 						>
-						<p class="text-sm text-ink-soft">{@html result.snippet}</p>
+						<p class="text-sm text-ink-soft">
+							<!-- eslint-disable-next-line svelte/no-at-html-tags -- ts_headline output over admin-authored content only -->
+							{@html result.snippet}
+						</p>
 					</li>
 				{/each}
 			{/if}

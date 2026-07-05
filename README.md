@@ -24,15 +24,15 @@ Copy `.env.example` to `.env` first and fill in the values (defaults match `dock
 
 ## Scripts
 
-| Command | Description |
-|---|---|
-| `bun run dev` | Start the dev server |
-| `bun run build` | Production build |
-| `bun run check` | Typecheck |
-| `bun run lint` / `format` | Lint / format |
-| `bun run db:generate` | Generate a Drizzle migration from schema changes |
-| `bun run db:migrate` | Apply migrations |
-| `bun run create-admin` | Seed the single admin user |
+| Command                   | Description                                      |
+| ------------------------- | ------------------------------------------------ |
+| `bun run dev`             | Start the dev server                             |
+| `bun run build`           | Production build                                 |
+| `bun run check`           | Typecheck                                        |
+| `bun run lint` / `format` | Lint / format                                    |
+| `bun run db:generate`     | Generate a Drizzle migration from schema changes |
+| `bun run db:migrate`      | Apply migrations                                 |
+| `bun run create-admin`    | Seed the single admin user                       |
 
 ## Deployment
 

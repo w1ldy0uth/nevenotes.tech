@@ -6,6 +6,8 @@
 		{ id: 'violet', label: 'Violet', swatch: '#8b5cf6' }
 	];
 
+	// Not a $derived: reading `document` must stay client-only (would throw during SSR).
+	// eslint-disable-next-line svelte/prefer-writable-derived
 	let active = $state('red');
 
 	$effect(() => {

@@ -10,7 +10,18 @@
 	const stack = [
 		{
 			category: 'Languages',
-			items: ['Java', 'TypeScript', 'JavaScript', 'Kotlin', 'Python', 'Go', 'Rust', 'C++', 'SQL', 'Bash']
+			items: [
+				'Java',
+				'TypeScript',
+				'JavaScript',
+				'Kotlin',
+				'Python',
+				'Go',
+				'Rust',
+				'C++',
+				'SQL',
+				'Bash'
+			]
 		},
 		{
 			category: 'Frameworks',
@@ -72,7 +83,16 @@
 		},
 		{
 			category: 'AI / ML',
-			items: ['PyTorch', 'scikit-learn', 'MLX', 'Hugging Face', 'LangChain', 'Claude', 'Ollama', 'LM Studio']
+			items: [
+				'PyTorch',
+				'scikit-learn',
+				'MLX',
+				'Hugging Face',
+				'LangChain',
+				'Claude',
+				'Ollama',
+				'LM Studio'
+			]
 		},
 		{
 			category: 'Tools',
@@ -107,11 +127,14 @@
 </svelte:head>
 
 <main class="mx-auto max-w-2xl px-4 py-12">
-	<a href="/" class="text-sm font-medium text-coral-dark hover:underline">&larr; {tr.common.home}</a>
+	<a href="/" class="text-sm font-medium text-coral-dark hover:underline">&larr; {tr.common.home}</a
+	>
 
 	<h1 class="mt-4 text-3xl font-bold text-ink">{tr.about.title}</h1>
 
-	<div class="prose prose-neutral dark:prose-invert mt-6 max-w-none rounded-2xl bg-surface p-8 shadow-warm">
+	<div
+		class="prose prose-neutral dark:prose-invert mt-6 max-w-none rounded-2xl bg-surface p-8 shadow-warm"
+	>
 		{#each tr.about.bioParagraphs as paragraph (paragraph)}
 			<p>{paragraph}</p>
 		{/each}

@@ -13,7 +13,9 @@
 
 	<div class="mt-4 flex items-center justify-between">
 		<h1 class="text-xl font-bold text-ink">Posts</h1>
-		<a href="/admin/posts/new" class="text-sm font-medium text-coral-dark hover:underline">New post</a>
+		<a href="/admin/posts/new" class="text-sm font-medium text-coral-dark hover:underline"
+			>New post</a
+		>
 	</div>
 
 	<ul class="mt-6 flex flex-col gap-2">

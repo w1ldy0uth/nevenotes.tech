@@ -21,10 +21,30 @@
 	<p class="mt-4 text-sm text-ink-soft">Signed in as {data.user?.email}</p>
 
 	<div class="mt-6 flex flex-wrap gap-3">
-		<a href="/admin/posts" class="rounded-full bg-surface px-4 py-2 text-sm font-medium text-ink shadow-warm-sm hover:text-coral-dark">Manage posts</a>
-		<a href="/admin/notes" class="rounded-full bg-surface px-4 py-2 text-sm font-medium text-ink shadow-warm-sm hover:text-coral-dark">Manage notes</a>
-		<a href="/admin/projects" class="rounded-full bg-surface px-4 py-2 text-sm font-medium text-ink shadow-warm-sm hover:text-coral-dark">Manage projects</a>
-		<a href="/admin/tags" class="rounded-full bg-surface px-4 py-2 text-sm font-medium text-ink shadow-warm-sm hover:text-coral-dark">Manage tags</a>
-		<a href="/admin/resume" class="rounded-full bg-surface px-4 py-2 text-sm font-medium text-ink shadow-warm-sm hover:text-coral-dark">Manage resume</a>
+		<a
+			href="/admin/posts"
+			class="rounded-full bg-surface px-4 py-2 text-sm font-medium text-ink shadow-warm-sm hover:text-coral-dark"
+			>Manage posts</a
+		>
+		<a
+			href="/admin/notes"
+			class="rounded-full bg-surface px-4 py-2 text-sm font-medium text-ink shadow-warm-sm hover:text-coral-dark"
+			>Manage notes</a
+		>
+		<a
+			href="/admin/projects"
+			class="rounded-full bg-surface px-4 py-2 text-sm font-medium text-ink shadow-warm-sm hover:text-coral-dark"
+			>Manage projects</a
+		>
+		<a
+			href="/admin/tags"
+			class="rounded-full bg-surface px-4 py-2 text-sm font-medium text-ink shadow-warm-sm hover:text-coral-dark"
+			>Manage tags</a
+		>
+		<a
+			href="/admin/resume"
+			class="rounded-full bg-surface px-4 py-2 text-sm font-medium text-ink shadow-warm-sm hover:text-coral-dark"
+			>Manage resume</a
+		>
 	</div>
 </main>

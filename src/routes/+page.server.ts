@@ -8,7 +8,12 @@ const PREVIEW_LIMIT = 3;
 export const load: PageServerLoad = async () => {
 	const [recentPosts, recentNotes, featuredProjects] = await Promise.all([
 		db
-			.select({ slug: posts.slug, title: posts.title, excerpt: posts.excerpt, publishedAt: posts.publishedAt })
+			.select({
+				slug: posts.slug,
+				title: posts.title,
+				excerpt: posts.excerpt,
+				publishedAt: posts.publishedAt
+			})
 			.from(posts)
 			.where(eq(posts.status, 'published'))
 			.orderBy(desc(posts.publishedAt))

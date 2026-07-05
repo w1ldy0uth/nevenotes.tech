@@ -1,7 +1,6 @@
 import { sql } from 'drizzle-orm';
 import { fail } from '@sveltejs/kit';
 import { db } from '$lib/server/db';
-import { tags } from '$lib/server/db/schema';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {

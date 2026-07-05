@@ -28,7 +28,9 @@
 	<section class="mt-8 rounded-2xl bg-surface p-6 shadow-warm-sm">
 		<div class="flex items-center justify-between">
 			<h2 class="text-lg font-bold text-ink">{tr.home.posts}</h2>
-			<a href="/blog" class="text-sm font-medium text-coral-dark hover:underline">{tr.home.viewAll}</a>
+			<a href="/blog" class="text-sm font-medium text-coral-dark hover:underline"
+				>{tr.home.viewAll}</a
+			>
 		</div>
 		<ul class="mt-4 flex flex-col gap-3">
 			{#each data.recentPosts as post (post.slug)}
@@ -49,7 +51,9 @@
 	<section class="mt-8 rounded-2xl bg-surface p-6 shadow-warm-sm">
 		<div class="flex items-center justify-between">
 			<h2 class="text-lg font-bold text-ink">{tr.home.notes}</h2>
-			<a href="/notes" class="text-sm font-medium text-coral-dark hover:underline">{tr.home.viewAll}</a>
+			<a href="/notes" class="text-sm font-medium text-coral-dark hover:underline"
+				>{tr.home.viewAll}</a
+			>
 		</div>
 		<ul class="mt-4 flex flex-col gap-3">
 			{#each data.recentNotes as note (note.slug)}

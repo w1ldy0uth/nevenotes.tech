@@ -69,11 +69,15 @@ export async function getNoteTagNames(noteId: number): Promise<string[]> {
 	return rows.map((r) => r.name);
 }
 
-export async function getPostTagNamesAndSlugs(postId: number): Promise<{ name: string; slug: string }[]> {
+export async function getPostTagNamesAndSlugs(
+	postId: number
+): Promise<{ name: string; slug: string }[]> {
 	return (await getTagsForPosts([postId])).get(postId) ?? [];
 }
 
-export async function getNoteTagNamesAndSlugs(noteId: number): Promise<{ name: string; slug: string }[]> {
+export async function getNoteTagNamesAndSlugs(
+	noteId: number
+): Promise<{ name: string; slug: string }[]> {
 	return (await getTagsForNotes([noteId])).get(noteId) ?? [];
 }
 

@@ -5,4 +5,5 @@ export const s3 = new Bun.S3Client({
 	bucket: process.env.S3_BUCKET!
 });
 
-export const s3PublicUrl = (key: string) => `${process.env.S3_ENDPOINT}/${process.env.S3_BUCKET}/${key}`;
+export const s3PublicUrl = (key: string) =>
+	`${process.env.S3_ENDPOINT}/${process.env.S3_BUCKET}/${key}`;

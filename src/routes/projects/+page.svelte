@@ -23,7 +23,8 @@
 </svelte:head>
 
 <main class="mx-auto max-w-2xl px-4 py-8">
-	<a href="/" class="text-sm font-medium text-coral-dark hover:underline">&larr; {tr.common.home}</a>
+	<a href="/" class="text-sm font-medium text-coral-dark hover:underline">&larr; {tr.common.home}</a
+	>
 
 	<h1 class="mt-4 text-2xl font-bold text-ink">{tr.projects.title}</h1>
 

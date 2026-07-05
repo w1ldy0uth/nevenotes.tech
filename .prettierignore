@@ -7,3 +7,6 @@ bun.lockb
 
 # Miscellaneous
 /static/
+
+# Helm templates contain Go template syntax ({{ }}), not valid YAML/JSON on their own
+/helm/

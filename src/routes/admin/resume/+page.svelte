@@ -84,7 +84,9 @@
 					<form
 						method="POST"
 						action="?/delete"
-						use:enhance={() => async ({ update }) => update()}
+						use:enhance={() =>
+							async ({ update }) =>
+								update()}
 					>
 						<input type="hidden" name="language" value={lang.code} />
 						<button type="submit" class="text-sm text-red-600 hover:underline">Delete</button>

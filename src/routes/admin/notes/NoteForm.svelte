@@ -11,7 +11,12 @@
 	} = $props();
 </script>
 
-<form method="POST" action="?/save" use:enhance class="flex flex-col gap-3 rounded-2xl bg-surface p-6 shadow-warm-sm">
+<form
+	method="POST"
+	action="?/save"
+	use:enhance
+	class="flex flex-col gap-3 rounded-2xl bg-surface p-6 shadow-warm-sm"
+>
 	<label class="flex flex-col gap-1">
 		<span class="text-sm text-ink-soft">Title</span>
 		<input

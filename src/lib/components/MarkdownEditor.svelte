@@ -1,9 +1,5 @@
 <script lang="ts">
-	let {
-		name,
-		value = '',
-		rows = 16
-	}: { name: string; value?: string; rows?: number } = $props();
+	let { name, value = '', rows = 16 }: { name: string; value?: string; rows?: number } = $props();
 
 	let textareaEl: HTMLTextAreaElement;
 	let content = $state(value);
@@ -89,7 +85,10 @@
 			class="rounded-lg bg-cream-100 px-3 py-2 font-mono text-sm outline-none focus:ring-2 focus:ring-coral"
 		></textarea>
 
-		<div class="prose prose-sm prose-neutral dark:prose-invert max-w-none overflow-auto rounded-lg bg-cream-100 px-3 py-2">
+		<div
+			class="prose prose-sm prose-neutral dark:prose-invert max-w-none overflow-auto rounded-lg bg-cream-100 px-3 py-2"
+		>
+			<!-- eslint-disable-next-line svelte/no-at-html-tags -- server-rendered markdown, admin-authored only -->
 			{@html previewHtml}
 		</div>
 	</div>
