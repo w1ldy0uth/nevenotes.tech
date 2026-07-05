@@ -82,7 +82,7 @@
 						>{project.title}</a
 					>
 					{#if project.description}
-						<p class="mt-1 text-sm text-ink-soft">{project.description}</p>
+						<p class="mt-1 text-sm whitespace-pre-line text-ink-soft">{project.description}</p>
 					{/if}
 				</li>
 			{:else}

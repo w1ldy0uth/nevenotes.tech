@@ -20,7 +20,7 @@
 		<h1 class="text-2xl font-bold text-ink">{data.project.title}</h1>
 
 		{#if data.project.description}
-			<p class="mt-4 text-ink">{data.project.description}</p>
+			<p class="mt-4 whitespace-pre-line text-ink">{data.project.description}</p>
 		{/if}
 
 		<div class="mt-4 flex gap-4 text-sm">
