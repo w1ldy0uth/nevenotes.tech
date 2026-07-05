@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import MarkdownEditor from '$lib/components/MarkdownEditor.svelte';
 
 	let {
 		note,
 		error
 	}: {
-		note?: { slug: string; title: string; bodyMd: string };
+		note?: { slug: string; title: string; bodyMd: string; tags?: string };
 		error?: string;
 	} = $props();
 </script>
@@ -33,11 +34,11 @@
 		/>
 	</label>
 
+	<MarkdownEditor name="bodyMd" value={note?.bodyMd ?? ''} />
+
 	<label class="flex flex-col gap-1">
-		<span class="text-sm">Body (Markdown)</span>
-		<textarea name="bodyMd" required rows="16" class="rounded border px-3 py-2 font-mono text-sm"
-			>{note?.bodyMd ?? ''}</textarea
-		>
+		<span class="text-sm">Tags (comma-separated)</span>
+		<input type="text" name="tags" value={note?.tags ?? ''} class="rounded border px-3 py-2" />
 	</label>
 
 	{#if error}

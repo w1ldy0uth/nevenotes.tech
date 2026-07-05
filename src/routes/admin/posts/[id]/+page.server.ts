@@ -2,6 +2,7 @@ import { eq } from 'drizzle-orm';
 import { error, fail, redirect } from '@sveltejs/kit';
 import { db } from '$lib/server/db';
 import { posts } from '$lib/server/db/schema';
+import { getPostTagNames, setPostTags } from '$lib/server/tags';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ params }) => {
@@ -16,7 +17,9 @@ export const load: PageServerLoad = async ({ params }) => {
 		error(404, 'Post not found');
 	}
 
-	return { post };
+	const tagNames = await getPostTagNames(id);
+
+	return { post: { ...post, tags: tagNames.join(', ') } };
 };
 
 export const actions: Actions = {
@@ -27,6 +30,7 @@ export const actions: Actions = {
 		const slug = formData.get('slug');
 		const excerpt = formData.get('excerpt');
 		const bodyMd = formData.get('bodyMd');
+		const tagsInput = formData.get('tags');
 		const status = formData.get('status') === 'published' ? 'published' : 'draft';
 
 		if (
@@ -68,6 +72,8 @@ export const actions: Actions = {
 		} catch {
 			return fail(400, { error: `Slug "${slug}" is already in use.` });
 		}
+
+		await setPostTags(id, typeof tagsInput === 'string' ? tagsInput : '');
 
 		return { success: true };
 	},

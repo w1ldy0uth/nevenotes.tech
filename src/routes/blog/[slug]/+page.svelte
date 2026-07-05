@@ -19,4 +19,14 @@
 	<div class="prose mt-6 max-w-none">
 		{@html data.html}
 	</div>
+
+	{#if data.tags.length > 0}
+		<ul class="mt-6 flex flex-wrap gap-2">
+			{#each data.tags as tag (tag.slug)}
+				<li>
+					<a href="/tags/{tag.slug}" class="rounded-full border px-3 py-1 text-sm">{tag.name}</a>
+				</li>
+			{/each}
+		</ul>
+	{/if}
 </main>

@@ -2,6 +2,7 @@ import { eq } from 'drizzle-orm';
 import { error, fail, redirect } from '@sveltejs/kit';
 import { db } from '$lib/server/db';
 import { notes } from '$lib/server/db/schema';
+import { getNoteTagNames, setNoteTags } from '$lib/server/tags';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ params }) => {
@@ -16,7 +17,9 @@ export const load: PageServerLoad = async ({ params }) => {
 		error(404, 'Note not found');
 	}
 
-	return { note };
+	const tagNames = await getNoteTagNames(id);
+
+	return { note: { ...note, tags: tagNames.join(', ') } };
 };
 
 export const actions: Actions = {
@@ -26,6 +29,7 @@ export const actions: Actions = {
 		const title = formData.get('title');
 		const slug = formData.get('slug');
 		const bodyMd = formData.get('bodyMd');
+		const tagsInput = formData.get('tags');
 
 		if (
 			typeof title !== 'string' ||
@@ -46,6 +50,8 @@ export const actions: Actions = {
 		} catch {
 			return fail(400, { error: `Slug "${slug}" is already in use.` });
 		}
+
+		await setNoteTags(id, typeof tagsInput === 'string' ? tagsInput : '');
 
 		return { success: true };
 	},

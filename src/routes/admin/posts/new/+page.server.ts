@@ -1,6 +1,7 @@
 import { fail, redirect } from '@sveltejs/kit';
 import { db } from '$lib/server/db';
 import { posts } from '$lib/server/db/schema';
+import { setPostTags } from '$lib/server/tags';
 import type { Actions } from './$types';
 
 export const actions: Actions = {
@@ -10,6 +11,7 @@ export const actions: Actions = {
 		const slug = formData.get('slug');
 		const excerpt = formData.get('excerpt');
 		const bodyMd = formData.get('bodyMd');
+		const tagsInput = formData.get('tags');
 		const status = formData.get('status') === 'published' ? 'published' : 'draft';
 
 		if (
@@ -40,6 +42,8 @@ export const actions: Actions = {
 		} catch {
 			return fail(400, { error: `Slug "${slug}" is already in use.` });
 		}
+
+		await setPostTags(postId, typeof tagsInput === 'string' ? tagsInput : '');
 
 		redirect(303, `/admin/posts/${postId}`);
 	}

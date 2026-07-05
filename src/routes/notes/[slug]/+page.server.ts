@@ -3,6 +3,7 @@ import { error } from '@sveltejs/kit';
 import { db } from '$lib/server/db';
 import { notes } from '$lib/server/db/schema';
 import { renderMarkdown } from '$lib/server/markdown';
+import { getNoteTagNamesAndSlugs } from '$lib/server/tags';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ params }) => {
@@ -12,9 +13,12 @@ export const load: PageServerLoad = async ({ params }) => {
 		error(404, 'Note not found');
 	}
 
+	const tags = await getNoteTagNamesAndSlugs(note.id);
+
 	return {
 		title: note.title,
 		createdAt: note.createdAt,
-		html: renderMarkdown(note.bodyMd)
+		html: renderMarkdown(note.bodyMd),
+		tags
 	};
 };

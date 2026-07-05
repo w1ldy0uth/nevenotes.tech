@@ -1,6 +1,7 @@
 import { fail, redirect } from '@sveltejs/kit';
 import { db } from '$lib/server/db';
 import { notes } from '$lib/server/db/schema';
+import { setNoteTags } from '$lib/server/tags';
 import type { Actions } from './$types';
 
 export const actions: Actions = {
@@ -9,6 +10,7 @@ export const actions: Actions = {
 		const title = formData.get('title');
 		const slug = formData.get('slug');
 		const bodyMd = formData.get('bodyMd');
+		const tagsInput = formData.get('tags');
 
 		if (
 			typeof title !== 'string' ||
@@ -31,6 +33,8 @@ export const actions: Actions = {
 		} catch {
 			return fail(400, { error: `Slug "${slug}" is already in use.` });
 		}
+
+		await setNoteTags(noteId, typeof tagsInput === 'string' ? tagsInput : '');
 
 		redirect(303, `/admin/notes/${noteId}`);
 	}
