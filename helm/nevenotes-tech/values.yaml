@@ -1,0 +1,55 @@
+replicaCount: 1
+
+image:
+  repository: ghcr.io/w1ldy0uth/nevenotes.tech
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 3000
+
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  host: nevenotes.tech
+  tls:
+    enabled: true
+    secretName: nevenotes-tech-tls
+
+# The public origin the app is served at. Required — svelte-adapter-bun assumes https://
+# by default when computing its own origin unless this (or PROTOCOL_HEADER) is set, which
+# breaks CSRF/origin checks on form submissions and the Secure session cookie.
+origin: https://nevenotes.tech
+
+# Postgres and MinIO are existing in-cluster infra (see architecture doc) — this chart
+# only deploys the app itself, not its dependencies.
+#
+# Secrets: either let this chart create one from the values below (fine for a single-operator
+# setup where values are supplied via `--set`/a gitignored values file, never committed), or
+# set existingSecret to the name of a Secret you manage separately and leave the rest blank.
+secret:
+  existingSecret: ''
+  databaseUrl: ''
+  s3Endpoint: ''
+  s3AccessKeyId: ''
+  s3SecretAccessKey: ''
+  s3Bucket: ''
+
+migration:
+  enabled: true
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    memory: 256Mi
+
+probes:
+  path: /
+  initialDelaySeconds: 5
+  periodSeconds: 10

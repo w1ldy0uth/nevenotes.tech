@@ -1,42 +1,40 @@
-# sv
+# nevenotes.tech
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+My personal site - bio, blog, notes, and projects, backed by a self-built CMS . Built with SvelteKit and Bun, self-hosted on k8s.
 
-## Creating a project
+## Stack
 
-If you're seeing this, you've probably already done this step. Congrats!
+- **SvelteKit** + **Bun** (native Postgres client, password hashing, S3 client)
+- **Postgres** via `drizzle-orm`, **MinIO** (S3-compatible) for images/resumes
+- Markdown rendering via `marked` + `shiki`, full-text search via Postgres `tsvector`
+- Custom session-cookie auth (single admin, no signup flow)
+- Tailwind CSS v4, dark mode + accent color picker, EN/RU i18n
 
-```sh
-# create a new project
-npx sv create my-app
-```
-
-To recreate this project with the same configuration:
-
-```sh
-# recreate this project
-bun x sv@0.16.1 create --template minimal --types ts --add prettier eslint tailwindcss="plugins:typography" --install bun .
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## Local development
 
 ```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+docker compose up -d        # Postgres + MinIO
+bun install
+bun run db:migrate
+bun run create-admin <email> <password>
+bun run dev
 ```
 
-## Building
+Copy `.env.example` to `.env` first and fill in the values (defaults match `docker-compose.yml`).
 
-To create a production version of your app:
+## Scripts
 
-```sh
-npm run build
-```
+| Command | Description |
+|---|---|
+| `bun run dev` | Start the dev server |
+| `bun run build` | Production build |
+| `bun run check` | Typecheck |
+| `bun run lint` / `format` | Lint / format |
+| `bun run db:generate` | Generate a Drizzle migration from schema changes |
+| `bun run db:migrate` | Apply migrations |
+| `bun run create-admin` | Seed the single admin user |
 
-You can preview the production build with `npm run preview`.
+## Deployment
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+Docker image built via the root `Dockerfile`, deployed with the Helm chart in `helm/nevenotes-tech/`.
+CI (`.github/workflows/ci.yml`) builds and pushes the image to GHCR on merge to `main`.

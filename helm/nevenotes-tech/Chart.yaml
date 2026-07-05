@@ -1,0 +1,6 @@
+apiVersion: v2
+name: nevenotes-tech
+description: Personal site + self-built CMS (SvelteKit + Bun), deployed as a single app Deployment
+type: application
+version: 0.1.0
+appVersion: "0.1.0"

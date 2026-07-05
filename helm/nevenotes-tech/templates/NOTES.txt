@@ -1,0 +1,20 @@
+nevenotes-tech has been deployed.
+
+{{- if .Values.ingress.enabled }}
+App URL: https://{{ .Values.ingress.host }}
+{{- else }}
+Ingress is disabled — access the app via:
+  kubectl port-forward svc/{{ include "nevenotes-tech.fullname" . }} 8080:{{ .Values.service.port }}
+{{- end }}
+
+The database migration ran as a pre-install/pre-upgrade hook Job. Check its status with:
+  kubectl get jobs -l app.kubernetes.io/instance={{ .Release.Name }}
+
+If this is the very first install, create the single admin user by running the create-admin
+script inside a running pod (this is intentionally not automated — it's an out-of-band,
+one-time step, same as in local dev):
+  kubectl exec -it deploy/{{ include "nevenotes-tech.fullname" . }} -- bun run scripts/create-admin.ts <email> <password>
+
+Reminder: `origin` in values.yaml must match the real public HTTPS URL this app is served at
+(currently: {{ .Values.origin }}) — the session cookie is Secure-only in production, and
+form-action CSRF checks compare against this origin.
