@@ -19,6 +19,8 @@
 
 	--shadow-warm: 0 8px 24px -8px rgb(43 36 29 / 0.18);
 	--shadow-warm-sm: 0 4px 12px -4px rgb(43 36 29 / 0.14);
+
+	--color-border: rgb(43 36 29 / 0.12);
 }
 
 :root.dark {
@@ -30,6 +32,8 @@
 
 	--color-coral: #ff8272;
 	--color-coral-dark: #ff9c8f;
+
+	--color-border: rgb(255 255 255 / 0.08);
 }
 
 html {
@@ -44,6 +48,13 @@ html::-webkit-scrollbar {
 body {
 	background-color: var(--color-cream);
 	color: var(--color-ink);
+}
+
+/* Keeps cards distinguishable from the page background on displays where
+   --color-surface and --color-cream render nearly identical (e.g. bright/
+   color-managed monitors in light mode). */
+.bg-surface {
+	border: 1px solid var(--color-border);
 }
 
 :root.dark .shadow-warm {
