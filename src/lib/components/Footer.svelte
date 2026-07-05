@@ -14,12 +14,19 @@
 			target="_blank"
 			rel="noreferrer noopener">{tr.footer.madeBy}</a
 		>
-		Ivan 'w1ldy0uth' Shurygin. {tr.footer.poweredBy}
+		{tr.footer.authorName}. {tr.footer.poweredBy}
 		<a
 			href="https://svelte.dev"
 			class="font-medium text-coral-dark hover:underline"
 			target="_blank"
 			rel="noreferrer noopener">SvelteKit</a
+		>
+		{tr.footer.and}
+		<a
+			href="https://bun.sh"
+			class="font-medium text-coral-dark hover:underline"
+			target="_blank"
+			rel="noreferrer noopener">Bun</a
 		>.
 	</p>
 </footer>

@@ -14,7 +14,9 @@ export const translations = {
 		},
 		footer: {
 			madeBy: 'Made by',
-			poweredBy: 'Powered by'
+			authorName: "Ivan 'w1ldy0uth' Shurygin",
+			poweredBy: 'Powered by',
+			and: 'and'
 		},
 		home: {
 			greeting: "Hi, I'm Ivan! 👋",
@@ -146,7 +148,9 @@ export const translations = {
 		},
 		footer: {
 			madeBy: 'Сделано',
-			poweredBy: 'Работает на'
+			authorName: "Иваном 'w1ldy0uth' Шурыгиным",
+			poweredBy: 'Работает на',
+			and: 'и'
 		},
 		home: {
 			greeting: 'Привет, я Иван! 👋',
