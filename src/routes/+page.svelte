@@ -81,8 +81,8 @@
 					<a href="/projects/{project.slug}" class="font-semibold text-ink hover:text-coral-dark"
 						>{project.title}</a
 					>
-					{#if project.description}
-						<p class="mt-1 text-sm whitespace-pre-line text-ink-soft">{project.description}</p>
+					{#if project.shortDescription}
+						<p class="mt-1 text-sm whitespace-pre-line text-ink-soft">{project.shortDescription}</p>
 					{/if}
 				</li>
 			{:else}

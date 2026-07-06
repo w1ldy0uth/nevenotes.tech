@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import MarkdownEditor from '$lib/components/MarkdownEditor.svelte';
 
 	let {
 		project,
@@ -8,7 +9,10 @@
 		project?: {
 			slug: string;
 			title: string;
-			description: string | null;
+			shortDescriptionEn: string | null;
+			shortDescriptionRu: string | null;
+			descriptionEn: string | null;
+			descriptionRu: string | null;
 			repoUrl: string | null;
 			liveUrl: string | null;
 			sortOrder: number;
@@ -46,14 +50,42 @@
 	</label>
 
 	<label class="flex flex-col gap-1">
-		<span class="text-sm text-ink-soft">Description</span>
-		<textarea
-			name="description"
-			rows="3"
+		<span class="text-sm text-ink-soft">Short description (EN)</span>
+		<input
+			type="text"
+			name="shortDescriptionEn"
+			value={project?.shortDescriptionEn ?? ''}
+			placeholder="Shown on the homepage and projects list — no Markdown or images"
 			class="rounded-lg bg-cream-100 px-3 py-2 outline-none focus:ring-2 focus:ring-coral"
-			>{project?.description ?? ''}</textarea
-		>
+		/>
 	</label>
+
+	<label class="flex flex-col gap-1">
+		<span class="text-sm text-ink-soft">Short description (RU)</span>
+		<input
+			type="text"
+			name="shortDescriptionRu"
+			value={project?.shortDescriptionRu ?? ''}
+			placeholder="Показывается на главной и в списке проектов — без Markdown и картинок"
+			class="rounded-lg bg-cream-100 px-3 py-2 outline-none focus:ring-2 focus:ring-coral"
+		/>
+	</label>
+
+	<MarkdownEditor
+		name="descriptionEn"
+		value={project?.descriptionEn ?? ''}
+		label="Description (EN, Markdown)"
+		rows={6}
+		required={false}
+	/>
+
+	<MarkdownEditor
+		name="descriptionRu"
+		value={project?.descriptionRu ?? ''}
+		label="Description (RU, Markdown)"
+		rows={6}
+		required={false}
+	/>
 
 	<label class="flex flex-col gap-1">
 		<span class="text-sm text-ink-soft">Repo URL</span>

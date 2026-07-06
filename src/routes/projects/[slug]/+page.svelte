@@ -19,8 +19,11 @@
 	<div class="mt-6 rounded-2xl bg-surface p-8 shadow-warm">
 		<h1 class="text-2xl font-bold text-ink">{data.project.title}</h1>
 
-		{#if data.project.description}
-			<p class="mt-4 whitespace-pre-line text-ink">{data.project.description}</p>
+		{#if data.project.descriptionHtml}
+			<div class="prose prose-neutral dark:prose-invert mt-4 max-w-none">
+				<!-- eslint-disable-next-line svelte/no-at-html-tags -- server-rendered markdown, admin-authored only -->
+				{@html data.project.descriptionHtml}
+			</div>
 		{/if}
 
 		<div class="mt-4 flex gap-4 text-sm">

@@ -43,7 +43,10 @@ export const projects = pgTable('projects', {
 	id: serial('id').primaryKey(),
 	slug: text('slug').notNull().unique(),
 	title: text('title').notNull(),
-	description: text('description'),
+	shortDescriptionEn: text('short_description_en'),
+	shortDescriptionRu: text('short_description_ru'),
+	descriptionEn: text('description_en'),
+	descriptionRu: text('description_ru'),
 	repoUrl: text('repo_url'),
 	liveUrl: text('live_url'),
 	sortOrder: integer('sort_order').notNull().default(0)

@@ -1,5 +1,17 @@
 <script lang="ts">
-	let { name, value = '', rows = 16 }: { name: string; value?: string; rows?: number } = $props();
+	let {
+		name,
+		value = '',
+		rows = 16,
+		label = 'Body (Markdown)',
+		required = true
+	}: {
+		name: string;
+		value?: string;
+		rows?: number;
+		label?: string;
+		required?: boolean;
+	} = $props();
 
 	let textareaEl: HTMLTextAreaElement;
 	let content = $state(value);
@@ -58,7 +70,7 @@
 
 <div class="flex flex-col gap-2">
 	<div class="flex items-center justify-between">
-		<span class="text-sm text-ink-soft">Body (Markdown)</span>
+		<span class="text-sm text-ink-soft">{label}</span>
 		<label class="cursor-pointer text-sm font-medium text-coral-dark hover:underline">
 			{uploading ? 'Uploading…' : 'Upload image'}
 			<input
@@ -80,7 +92,7 @@
 			bind:this={textareaEl}
 			bind:value={content}
 			{name}
-			required
+			{required}
 			{rows}
 			class="rounded-lg bg-cream-100 px-3 py-2 font-mono text-sm outline-none focus:ring-2 focus:ring-coral"
 		></textarea>

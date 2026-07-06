@@ -8,7 +8,10 @@ export const actions: Actions = {
 		const formData = await request.formData();
 		const title = formData.get('title');
 		const slug = formData.get('slug');
-		const description = formData.get('description');
+		const shortDescriptionEn = formData.get('shortDescriptionEn');
+		const shortDescriptionRu = formData.get('shortDescriptionRu');
+		const descriptionEn = formData.get('descriptionEn');
+		const descriptionRu = formData.get('descriptionRu');
 		const repoUrl = formData.get('repoUrl');
 		const liveUrl = formData.get('liveUrl');
 		const sortOrder = Number(formData.get('sortOrder') ?? 0);
@@ -24,7 +27,16 @@ export const actions: Actions = {
 				.values({
 					title,
 					slug,
-					description: typeof description === 'string' && description ? description : null,
+					shortDescriptionEn:
+						typeof shortDescriptionEn === 'string' && shortDescriptionEn
+							? shortDescriptionEn
+							: null,
+					shortDescriptionRu:
+						typeof shortDescriptionRu === 'string' && shortDescriptionRu
+							? shortDescriptionRu
+							: null,
+					descriptionEn: typeof descriptionEn === 'string' && descriptionEn ? descriptionEn : null,
+					descriptionRu: typeof descriptionRu === 'string' && descriptionRu ? descriptionRu : null,
 					repoUrl: typeof repoUrl === 'string' && repoUrl ? repoUrl : null,
 					liveUrl: typeof liveUrl === 'string' && liveUrl ? liveUrl : null,
 					sortOrder: Number.isFinite(sortOrder) ? sortOrder : 0

@@ -11,7 +11,7 @@
 	let filteredProjects = $derived(
 		query.trim()
 			? data.projects.filter((project) => {
-					const haystack = `${project.title} ${project.description ?? ''}`.toLowerCase();
+					const haystack = `${project.title} ${project.shortDescription ?? ''}`.toLowerCase();
 					return haystack.includes(query.trim().toLowerCase());
 				})
 			: data.projects
@@ -42,8 +42,8 @@
 					href="/projects/{project.slug}"
 					class="text-lg font-semibold text-ink hover:text-coral-dark">{project.title}</a
 				>
-				{#if project.description}
-					<p class="mt-1 text-sm whitespace-pre-line text-ink">{project.description}</p>
+				{#if project.shortDescription}
+					<p class="mt-1 text-sm text-ink">{project.shortDescription}</p>
 				{/if}
 				<div class="mt-2 flex gap-3 text-sm">
 					{#if project.repoUrl}

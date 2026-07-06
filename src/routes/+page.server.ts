@@ -1,11 +1,12 @@
 import { asc, desc, eq } from 'drizzle-orm';
 import { db } from '$lib/server/db';
 import { notes, posts, projects } from '$lib/server/db/schema';
+import { pickProjectShortDescription } from '$lib/server/projects';
 import type { PageServerLoad } from './$types';
 
 const PREVIEW_LIMIT = 3;
 
-export const load: PageServerLoad = async () => {
+export const load: PageServerLoad = async ({ locals }) => {
 	const [recentPosts, recentNotes, featuredProjects] = await Promise.all([
 		db
 			.select({
@@ -24,11 +25,24 @@ export const load: PageServerLoad = async () => {
 			.orderBy(desc(notes.createdAt))
 			.limit(PREVIEW_LIMIT),
 		db
-			.select({ slug: projects.slug, title: projects.title, description: projects.description })
+			.select({
+				slug: projects.slug,
+				title: projects.title,
+				shortDescriptionEn: projects.shortDescriptionEn,
+				shortDescriptionRu: projects.shortDescriptionRu
+			})
 			.from(projects)
 			.orderBy(asc(projects.sortOrder))
 			.limit(PREVIEW_LIMIT)
 	]);
 
-	return { recentPosts, recentNotes, featuredProjects };
+	return {
+		recentPosts,
+		recentNotes,
+		featuredProjects: featuredProjects.map((project) => ({
+			slug: project.slug,
+			title: project.title,
+			shortDescription: pickProjectShortDescription(project, locals.locale)
+		}))
+	};
 };
