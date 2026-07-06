@@ -135,9 +135,15 @@
 	<div
 		class="prose prose-neutral dark:prose-invert mt-6 max-w-none rounded-2xl bg-surface p-8 shadow-warm"
 	>
-		{#each tr.about.bioParagraphs as paragraph (paragraph)}
-			<p>{paragraph}</p>
-		{/each}
+		<p>{tr.about.bioIntro}</p>
+		<p>{tr.about.bioWorkStyle}</p>
+		<p>
+			{tr.about.bioProjects.before}<a href="/projects" class="font-medium text-coral-dark"
+				>{tr.nav.projects}</a
+			>{tr.about.bioProjects.after}
+		</p>
+		<p>{tr.about.bioSite}</p>
+		<p>{tr.about.bioPersonal}</p>
 	</div>
 
 	<details class="mt-6 rounded-2xl bg-surface p-6 shadow-warm-sm" open>

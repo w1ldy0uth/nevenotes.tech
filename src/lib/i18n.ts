@@ -20,7 +20,7 @@ export const translations = {
 		},
 		home: {
 			greeting: "Hi, I'm Ivan! 👋",
-			bio: "I'm a software engineer and devops specialist with a passion for building scalable and maintainable applications. I'm interested in complex software development, infrastructure automation, and open-source software. I enjoy learning new technologies and sharing my knowledge with the community.",
+			bio: "I'm a full-stack software engineer and DevOps specialist. Here you'll find information about me, my work, and my projects, along with my articles and thoughts. Feel free to connect with me, or subscribe to the RSS feed on my blog to follow my latest posts.",
 			aboutCta: 'About me',
 			posts: 'Posts',
 			notes: 'Notes',
@@ -61,12 +61,19 @@ export const translations = {
 		},
 		about: {
 			title: 'About me',
-			bioParagraphs: [
-				"I'm Ivan Shurygin, also known online as w1ldy0uth or nevenoke - a full-stack developer, DevOps engineer, and software architect. I build things that work, and I care about understanding why they work: clean architecture, sane infrastructure, and automation of everything that doesn't need a human doing it by hand.",
-				"Day to day I move across the whole stack - from Kotlin and Java backends to React and Svelte frontends - and spend a lot of time in the DevOps layer: Kubernetes, Terraform, Ansible, and the observability stack (Prometheus, Grafana, Loki) that tells you when something's actually wrong instead of guessing. I'm drawn to complex, high-load systems and the kind of system design problems where the constraints are as interesting as the solution.",
-				'Outside of client and day-job work, I maintain a handful of open-source side projects: sondare, a network audit CLI built on Scapy; meetnotes, a local tool for transcribing and summarizing meetings; datadi, a distributed task queue written in Go; and python-underlying-concepts, a set of scripts that dig into how Python actually works under the hood.',
-				"This site - nevenotes.tech - is itself one of those projects: a self-built CMS running on SvelteKit and Bun, because I'd rather understand every layer of the stack than hand it off to someone else's platform."
-			],
+			bioIntro:
+				'I go by Ivan Shurygin, or sometimes w1ldy0uth and nevenoke online. My work sits somewhere between full-stack development, DevOps, and software architecture, and what ties it together is a habit of asking why something works, not just getting it to work.',
+			bioWorkStyle:
+				"Most days I move across the whole stack, from backend and frontend development to the DevOps layer, keeping systems observable so I know what's actually broken instead of guessing. I'm drawn to complex, high-load systems, especially when the constraints are as interesting as the solution.",
+			bioProjects: {
+				before:
+					'Outside my day job, I keep a handful of open-source projects going. You can find them on the ',
+				after: ' page.'
+			},
+			bioSite:
+				"This site is one of them too, a self-built CMS on SvelteKit and Bun. I'd rather understand every layer of my own stack than hand it off to someone else's platform.",
+			bioPersonal:
+				'Outside of code, I run long distances, work out regularly, and enjoy digging into higher mathematics for fun. I read a lot, mostly classic literature along with non-fiction on psychology and philosophy, and I spend plenty of time watching movies, series, and anime. I also play single-player video games and like learning about game design.',
 			techStack: 'Tech stack',
 			experience: 'Experience',
 			resumeEn: 'Resume (EN)',
@@ -154,7 +161,7 @@ export const translations = {
 		},
 		home: {
 			greeting: 'Привет, я Иван! 👋',
-			bio: 'Я инженер-программист и специалист по DevOps, увлечён созданием масштабируемых и поддерживаемых приложений. Мне интересна сложная разработка ПО, автоматизация инфраструктуры и open-source. Мне нравится изучать новые технологии и делиться знаниями с сообществом.',
+			bio: 'Я full-stack разработчик и DevOps специалист. Здесь можно найти информацию обо мне, моей работе и проектах, а также статьи и мысли. Буду рад знакомству — напишите мне что-нибудь или подпишитесь на RSS блога, чтобы следить за новыми публикациями.',
 			aboutCta: 'Обо мне',
 			posts: 'Посты',
 			notes: 'Заметки',
@@ -195,12 +202,19 @@ export const translations = {
 		},
 		about: {
 			title: 'Обо мне',
-			bioParagraphs: [
-				'Я Иван Шурыгин, также известный как w1ldy0uth или nevenoke — full-stack разработчик, DevOps-инженер и software-архитектор. Я создаю то, что работает, и мне важно понимать, почему это работает: чистая архитектура, разумная инфраструктура и автоматизация всего, что не обязательно делать руками.',
-				'День за днём я работаю по всему стеку — от бэкендов на Kotlin и Java до фронтендов на React и Svelte — и много времени провожу в DevOps-слое: Kubernetes, Terraform, Ansible и стек наблюдаемости (Prometheus, Grafana, Loki), который говорит, что реально сломалось, вместо того чтобы гадать. Меня привлекают сложные высоконагруженные системы и задачи проектирования систем, где ограничения не менее интересны, чем само решение.',
-				'Помимо работы с клиентами и основной занятости, я веду несколько open-source проектов: sondare — CLI для аудита сети на базе Scapy; meetnotes — локальный инструмент для расшифровки и суммаризации встреч; datadi — распределённая очередь задач на Go; и python-underlying-concepts — набор скриптов, разбирающих, как на самом деле устроен Python изнутри.',
-				'Этот сайт — nevenotes.tech — сам по себе один из таких проектов: самописная CMS на SvelteKit и Bun, потому что я предпочитаю понимать каждый слой стека, а не отдавать это на откуп чужой платформе.'
-			],
+			bioIntro:
+				'Я Иван Шурыгин, в сети иногда w1ldy0uth или nevenoke. Моя работа сочетает full-stack разработку, DevOps и software-архитектуру, а объединяет всё это привычка спрашивать, почему что-то работает, а не просто добиваться того, чтобы оно работало.',
+			bioWorkStyle:
+				'Обычно я работаю по всему стеку: от бэкенда и фронтенда до DevOps-слоя, стараясь делать системы наблюдаемыми, чтобы точно знать, что сломалось, а не гадать. Меня привлекают сложные высоконагруженные системы, особенно когда ограничения не менее интересны, чем само решение.',
+			bioProjects: {
+				before:
+					'Помимо основной работы, я веду несколько open-source проектов. Их можно найти на странице ',
+				after: '.'
+			},
+			bioSite:
+				'Этот сайт тоже один из них: самописная CMS на SvelteKit и Bun. Я предпочитаю понимать каждый слой своего стека, а не отдавать это на откуп чужой платформе.',
+			bioPersonal:
+				'Помимо программирования, я бегаю на длинные дистанции, регулярно тренируюсь и люблю разбираться в высшей математике для себя. Много читаю, в основном классическую литературу и non-fiction по психологии и философии, а также часто смотрю фильмы, сериалы и аниме. Ещё играю в однопользовательские видеоигры и люблю изучать геймдизайн.',
 			techStack: 'Технологии',
 			experience: 'Опыт работы',
 			resumeEn: 'Резюме (EN)',
