@@ -26,22 +26,25 @@ export const actions: Actions = {
 	save: async ({ request, params }) => {
 		const id = Number(params.id);
 		const formData = await request.formData();
-		const title = formData.get('title');
+		const titleEn = formData.get('titleEn');
+		const titleRu = formData.get('titleRu');
 		const slug = formData.get('slug');
-		const excerpt = formData.get('excerpt');
-		const bodyMd = formData.get('bodyMd');
+		const excerptEn = formData.get('excerptEn');
+		const excerptRu = formData.get('excerptRu');
+		const bodyMdEn = formData.get('bodyMdEn');
+		const bodyMdRu = formData.get('bodyMdRu');
 		const tagsInput = formData.get('tags');
 		const status = formData.get('status') === 'published' ? 'published' : 'draft';
 
 		if (
-			typeof title !== 'string' ||
+			typeof titleEn !== 'string' ||
 			typeof slug !== 'string' ||
-			typeof bodyMd !== 'string' ||
-			!title ||
+			typeof bodyMdEn !== 'string' ||
+			!titleEn ||
 			!slug ||
-			!bodyMd
+			!bodyMdEn
 		) {
-			return fail(400, { error: 'Title, slug, and body are required.' });
+			return fail(400, { error: 'Title (EN), slug, and body (EN) are required.' });
 		}
 
 		const [existing] = await db
@@ -60,10 +63,13 @@ export const actions: Actions = {
 			await db
 				.update(posts)
 				.set({
-					title,
+					titleEn,
+					titleRu: typeof titleRu === 'string' && titleRu ? titleRu : null,
 					slug,
-					bodyMd,
-					excerpt: typeof excerpt === 'string' && excerpt ? excerpt : null,
+					bodyMdEn,
+					bodyMdRu: typeof bodyMdRu === 'string' && bodyMdRu ? bodyMdRu : null,
+					excerptEn: typeof excerptEn === 'string' && excerptEn ? excerptEn : null,
+					excerptRu: typeof excerptRu === 'string' && excerptRu ? excerptRu : null,
 					status,
 					publishedAt,
 					updatedAt: new Date()

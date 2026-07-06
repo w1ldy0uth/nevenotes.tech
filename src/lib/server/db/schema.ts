@@ -21,9 +21,12 @@ export const sessions = pgTable('sessions', {
 export const posts = pgTable('posts', {
 	id: serial('id').primaryKey(),
 	slug: text('slug').notNull().unique(),
-	title: text('title').notNull(),
-	excerpt: text('excerpt'),
-	bodyMd: text('body_md').notNull(),
+	titleEn: text('title_en').notNull(),
+	titleRu: text('title_ru'),
+	excerptEn: text('excerpt_en'),
+	excerptRu: text('excerpt_ru'),
+	bodyMdEn: text('body_md_en').notNull(),
+	bodyMdRu: text('body_md_ru'),
 	status: postStatus('status').notNull().default('draft'),
 	publishedAt: timestamp('published_at', { withTimezone: true }),
 	createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
@@ -33,8 +36,10 @@ export const posts = pgTable('posts', {
 export const notes = pgTable('notes', {
 	id: serial('id').primaryKey(),
 	slug: text('slug').notNull().unique(),
-	title: text('title').notNull(),
-	bodyMd: text('body_md').notNull(),
+	titleEn: text('title_en').notNull(),
+	titleRu: text('title_ru'),
+	bodyMdEn: text('body_md_en').notNull(),
+	bodyMdRu: text('body_md_ru'),
 	createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 	updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow()
 });

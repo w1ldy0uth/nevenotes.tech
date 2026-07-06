@@ -1,6 +1,8 @@
 import { asc, desc, eq } from 'drizzle-orm';
 import { db } from '$lib/server/db';
 import { notes, posts, projects } from '$lib/server/db/schema';
+import { pickNoteTitle } from '$lib/server/notes';
+import { pickPostExcerpt, pickPostTitle } from '$lib/server/posts';
 import { pickProjectShortDescription } from '$lib/server/projects';
 import type { PageServerLoad } from './$types';
 
@@ -11,8 +13,10 @@ export const load: PageServerLoad = async ({ locals }) => {
 		db
 			.select({
 				slug: posts.slug,
-				title: posts.title,
-				excerpt: posts.excerpt,
+				titleEn: posts.titleEn,
+				titleRu: posts.titleRu,
+				excerptEn: posts.excerptEn,
+				excerptRu: posts.excerptRu,
 				publishedAt: posts.publishedAt
 			})
 			.from(posts)
@@ -20,7 +24,12 @@ export const load: PageServerLoad = async ({ locals }) => {
 			.orderBy(desc(posts.publishedAt))
 			.limit(PREVIEW_LIMIT),
 		db
-			.select({ slug: notes.slug, title: notes.title, createdAt: notes.createdAt })
+			.select({
+				slug: notes.slug,
+				titleEn: notes.titleEn,
+				titleRu: notes.titleRu,
+				createdAt: notes.createdAt
+			})
 			.from(notes)
 			.orderBy(desc(notes.createdAt))
 			.limit(PREVIEW_LIMIT),
@@ -37,8 +46,17 @@ export const load: PageServerLoad = async ({ locals }) => {
 	]);
 
 	return {
-		recentPosts,
-		recentNotes,
+		recentPosts: recentPosts.map((post) => ({
+			slug: post.slug,
+			title: pickPostTitle(post, locals.locale),
+			excerpt: pickPostExcerpt(post, locals.locale),
+			publishedAt: post.publishedAt
+		})),
+		recentNotes: recentNotes.map((note) => ({
+			slug: note.slug,
+			title: pickNoteTitle(note, locals.locale),
+			createdAt: note.createdAt
+		})),
 		featuredProjects: featuredProjects.map((project) => ({
 			slug: project.slug,
 			title: project.title,

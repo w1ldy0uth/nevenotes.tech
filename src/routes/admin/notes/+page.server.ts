@@ -5,7 +5,7 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
 	const rows = await db
-		.select({ id: notes.id, slug: notes.slug, title: notes.title, updatedAt: notes.updatedAt })
+		.select({ id: notes.id, slug: notes.slug, title: notes.titleEn, updatedAt: notes.updatedAt })
 		.from(notes)
 		.orderBy(desc(notes.updatedAt));
 

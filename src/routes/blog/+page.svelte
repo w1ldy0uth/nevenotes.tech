@@ -14,7 +14,7 @@
 		rel="alternate"
 		type="application/rss+xml"
 		title="nevenotes.tech — Blog"
-		href="/blog/rss.xml"
+		href="/blog/rss.xml?locale={data.locale}"
 	/>
 </svelte:head>
 
@@ -24,8 +24,9 @@
 
 	<div class="mt-4 flex items-center justify-between">
 		<h1 class="text-2xl font-bold text-ink">{tr.blog.title}</h1>
-		<a href="/blog/rss.xml" class="text-sm font-medium text-coral-dark hover:underline"
-			>{tr.blog.rss}</a
+		<a
+			href="/blog/rss.xml?locale={data.locale}"
+			class="text-sm font-medium text-coral-dark hover:underline">{tr.blog.rss}</a
 		>
 	</div>
 

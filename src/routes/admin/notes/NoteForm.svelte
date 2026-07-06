@@ -6,7 +6,14 @@
 		note,
 		error
 	}: {
-		note?: { slug: string; title: string; bodyMd: string; tags?: string };
+		note?: {
+			slug: string;
+			titleEn: string;
+			titleRu: string | null;
+			bodyMdEn: string;
+			bodyMdRu: string | null;
+			tags?: string;
+		};
 		error?: string;
 	} = $props();
 </script>
@@ -18,12 +25,22 @@
 	class="flex flex-col gap-3 rounded-2xl bg-surface p-6 shadow-warm-sm"
 >
 	<label class="flex flex-col gap-1">
-		<span class="text-sm text-ink-soft">Title</span>
+		<span class="text-sm text-ink-soft">Title (EN)</span>
 		<input
 			type="text"
-			name="title"
+			name="titleEn"
 			required
-			value={note?.title ?? ''}
+			value={note?.titleEn ?? ''}
+			class="rounded-lg bg-cream-100 px-3 py-2 outline-none focus:ring-2 focus:ring-coral"
+		/>
+	</label>
+
+	<label class="flex flex-col gap-1">
+		<span class="text-sm text-ink-soft">Title (RU)</span>
+		<input
+			type="text"
+			name="titleRu"
+			value={note?.titleRu ?? ''}
 			class="rounded-lg bg-cream-100 px-3 py-2 outline-none focus:ring-2 focus:ring-coral"
 		/>
 	</label>
@@ -39,7 +56,14 @@
 		/>
 	</label>
 
-	<MarkdownEditor name="bodyMd" value={note?.bodyMd ?? ''} />
+	<MarkdownEditor name="bodyMdEn" value={note?.bodyMdEn ?? ''} label="Body (EN, Markdown)" />
+
+	<MarkdownEditor
+		name="bodyMdRu"
+		value={note?.bodyMdRu ?? ''}
+		label="Body (RU, Markdown)"
+		required={false}
+	/>
 
 	<label class="flex flex-col gap-1">
 		<span class="text-sm text-ink-soft">Tags (comma-separated)</span>

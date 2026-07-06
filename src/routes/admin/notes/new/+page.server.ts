@@ -7,27 +7,35 @@ import type { Actions } from './$types';
 export const actions: Actions = {
 	save: async ({ request }) => {
 		const formData = await request.formData();
-		const title = formData.get('title');
+		const titleEn = formData.get('titleEn');
+		const titleRu = formData.get('titleRu');
 		const slug = formData.get('slug');
-		const bodyMd = formData.get('bodyMd');
+		const bodyMdEn = formData.get('bodyMdEn');
+		const bodyMdRu = formData.get('bodyMdRu');
 		const tagsInput = formData.get('tags');
 
 		if (
-			typeof title !== 'string' ||
+			typeof titleEn !== 'string' ||
 			typeof slug !== 'string' ||
-			typeof bodyMd !== 'string' ||
-			!title ||
+			typeof bodyMdEn !== 'string' ||
+			!titleEn ||
 			!slug ||
-			!bodyMd
+			!bodyMdEn
 		) {
-			return fail(400, { error: 'Title, slug, and body are required.' });
+			return fail(400, { error: 'Title (EN), slug, and body (EN) are required.' });
 		}
 
 		let noteId: number;
 		try {
 			const [note] = await db
 				.insert(notes)
-				.values({ title, slug, bodyMd })
+				.values({
+					titleEn,
+					titleRu: typeof titleRu === 'string' && titleRu ? titleRu : null,
+					slug,
+					bodyMdEn,
+					bodyMdRu: typeof bodyMdRu === 'string' && bodyMdRu ? bodyMdRu : null
+				})
 				.returning({ id: notes.id });
 			noteId = note.id;
 		} catch {

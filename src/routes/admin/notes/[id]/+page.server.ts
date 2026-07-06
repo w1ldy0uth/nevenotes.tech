@@ -26,26 +26,35 @@ export const actions: Actions = {
 	save: async ({ request, params }) => {
 		const id = Number(params.id);
 		const formData = await request.formData();
-		const title = formData.get('title');
+		const titleEn = formData.get('titleEn');
+		const titleRu = formData.get('titleRu');
 		const slug = formData.get('slug');
-		const bodyMd = formData.get('bodyMd');
+		const bodyMdEn = formData.get('bodyMdEn');
+		const bodyMdRu = formData.get('bodyMdRu');
 		const tagsInput = formData.get('tags');
 
 		if (
-			typeof title !== 'string' ||
+			typeof titleEn !== 'string' ||
 			typeof slug !== 'string' ||
-			typeof bodyMd !== 'string' ||
-			!title ||
+			typeof bodyMdEn !== 'string' ||
+			!titleEn ||
 			!slug ||
-			!bodyMd
+			!bodyMdEn
 		) {
-			return fail(400, { error: 'Title, slug, and body are required.' });
+			return fail(400, { error: 'Title (EN), slug, and body (EN) are required.' });
 		}
 
 		try {
 			await db
 				.update(notes)
-				.set({ title, slug, bodyMd, updatedAt: new Date() })
+				.set({
+					titleEn,
+					titleRu: typeof titleRu === 'string' && titleRu ? titleRu : null,
+					slug,
+					bodyMdEn,
+					bodyMdRu: typeof bodyMdRu === 'string' && bodyMdRu ? bodyMdRu : null,
+					updatedAt: new Date()
+				})
 				.where(eq(notes.id, id));
 		} catch {
 			return fail(400, { error: `Slug "${slug}" is already in use.` });

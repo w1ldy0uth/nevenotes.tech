@@ -1,6 +1,7 @@
 import { desc, eq } from 'drizzle-orm';
 import { db } from '$lib/server/db';
 import { posts } from '$lib/server/db/schema';
+import { pickPostExcerpt, pickPostTitle } from '$lib/server/posts';
 import type { RequestHandler } from './$types';
 
 function escapeXml(input: string): string {
@@ -14,12 +15,15 @@ function escapeXml(input: string): string {
 
 export const GET: RequestHandler = async ({ url }) => {
 	const siteUrl = url.origin;
+	const locale = url.searchParams.get('locale') === 'ru' ? 'ru' : 'en';
 
 	const rows = await db
 		.select({
 			slug: posts.slug,
-			title: posts.title,
-			excerpt: posts.excerpt,
+			titleEn: posts.titleEn,
+			titleRu: posts.titleRu,
+			excerptEn: posts.excerptEn,
+			excerptRu: posts.excerptRu,
 			publishedAt: posts.publishedAt
 		})
 		.from(posts)
@@ -27,16 +31,18 @@ export const GET: RequestHandler = async ({ url }) => {
 		.orderBy(desc(posts.publishedAt));
 
 	const items = rows
-		.map(
-			(post) => `
+		.map((post) => {
+			const title = pickPostTitle(post, locale);
+			const excerpt = pickPostExcerpt(post, locale);
+			return `
 		<item>
-			<title>${escapeXml(post.title)}</title>
+			<title>${escapeXml(title)}</title>
 			<link>${siteUrl}/blog/${post.slug}</link>
 			<guid>${siteUrl}/blog/${post.slug}</guid>
-			${post.excerpt ? `<description>${escapeXml(post.excerpt)}</description>` : ''}
+			${excerpt ? `<description>${escapeXml(excerpt)}</description>` : ''}
 			${post.publishedAt ? `<pubDate>${post.publishedAt.toUTCString()}</pubDate>` : ''}
-		</item>`
-		)
+		</item>`;
+		})
 		.join('');
 
 	const xml = `<?xml version="1.0" encoding="UTF-8"?>

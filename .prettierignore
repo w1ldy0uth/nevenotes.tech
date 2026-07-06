@@ -10,3 +10,6 @@ bun.lockb
 
 # Helm templates contain Go template syntax ({{ }}), not valid YAML/JSON on their own
 /helm/
+
+# Drizzle ORM
+/drizzle/

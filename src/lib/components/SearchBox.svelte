@@ -24,7 +24,9 @@
 
 		loading = true;
 		debounceHandle = setTimeout(async () => {
-			const res = await fetch(`/api/search?q=${encodeURIComponent(query)}&type=${type}`);
+			const res = await fetch(
+				`/api/search?q=${encodeURIComponent(query)}&type=${type}&locale=${locale}`
+			);
 			const data = await res.json();
 			results = data.results;
 			loading = false;

@@ -8,9 +8,12 @@
 	}: {
 		post?: {
 			slug: string;
-			title: string;
-			excerpt: string | null;
-			bodyMd: string;
+			titleEn: string;
+			titleRu: string | null;
+			excerptEn: string | null;
+			excerptRu: string | null;
+			bodyMdEn: string;
+			bodyMdRu: string | null;
 			status: 'draft' | 'published';
 			tags?: string;
 		};
@@ -25,12 +28,22 @@
 	class="flex flex-col gap-3 rounded-2xl bg-surface p-6 shadow-warm-sm"
 >
 	<label class="flex flex-col gap-1">
-		<span class="text-sm text-ink-soft">Title</span>
+		<span class="text-sm text-ink-soft">Title (EN)</span>
 		<input
 			type="text"
-			name="title"
+			name="titleEn"
 			required
-			value={post?.title ?? ''}
+			value={post?.titleEn ?? ''}
+			class="rounded-lg bg-cream-100 px-3 py-2 outline-none focus:ring-2 focus:ring-coral"
+		/>
+	</label>
+
+	<label class="flex flex-col gap-1">
+		<span class="text-sm text-ink-soft">Title (RU)</span>
+		<input
+			type="text"
+			name="titleRu"
+			value={post?.titleRu ?? ''}
 			class="rounded-lg bg-cream-100 px-3 py-2 outline-none focus:ring-2 focus:ring-coral"
 		/>
 	</label>
@@ -47,11 +60,21 @@
 	</label>
 
 	<label class="flex flex-col gap-1">
-		<span class="text-sm text-ink-soft">Excerpt</span>
+		<span class="text-sm text-ink-soft">Excerpt (EN)</span>
 		<input
 			type="text"
-			name="excerpt"
-			value={post?.excerpt ?? ''}
+			name="excerptEn"
+			value={post?.excerptEn ?? ''}
+			class="rounded-lg bg-cream-100 px-3 py-2 outline-none focus:ring-2 focus:ring-coral"
+		/>
+	</label>
+
+	<label class="flex flex-col gap-1">
+		<span class="text-sm text-ink-soft">Excerpt (RU)</span>
+		<input
+			type="text"
+			name="excerptRu"
+			value={post?.excerptRu ?? ''}
 			class="rounded-lg bg-cream-100 px-3 py-2 outline-none focus:ring-2 focus:ring-coral"
 		/>
 	</label>
@@ -67,7 +90,14 @@
 		</select>
 	</label>
 
-	<MarkdownEditor name="bodyMd" value={post?.bodyMd ?? ''} />
+	<MarkdownEditor name="bodyMdEn" value={post?.bodyMdEn ?? ''} label="Body (EN, Markdown)" />
+
+	<MarkdownEditor
+		name="bodyMdRu"
+		value={post?.bodyMdRu ?? ''}
+		label="Body (RU, Markdown)"
+		required={false}
+	/>
 
 	<label class="flex flex-col gap-1">
 		<span class="text-sm text-ink-soft">Tags (comma-separated)</span>

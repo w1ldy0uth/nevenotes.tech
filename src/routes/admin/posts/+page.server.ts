@@ -8,7 +8,7 @@ export const load: PageServerLoad = async () => {
 		.select({
 			id: posts.id,
 			slug: posts.slug,
-			title: posts.title,
+			title: posts.titleEn,
 			status: posts.status,
 			updatedAt: posts.updatedAt
 		})

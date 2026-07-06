@@ -2,11 +2,11 @@ import { eq } from 'drizzle-orm';
 import { error } from '@sveltejs/kit';
 import { db } from '$lib/server/db';
 import { notes } from '$lib/server/db/schema';
-import { renderMarkdown } from '$lib/server/markdown';
+import { pickNoteTitle, renderNoteBody } from '$lib/server/notes';
 import { getNoteTagNamesAndSlugs } from '$lib/server/tags';
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ params }) => {
+export const load: PageServerLoad = async ({ params, locals }) => {
 	const [note] = await db.select().from(notes).where(eq(notes.slug, params.slug));
 
 	if (!note) {
@@ -16,9 +16,9 @@ export const load: PageServerLoad = async ({ params }) => {
 	const tags = await getNoteTagNamesAndSlugs(note.id);
 
 	return {
-		title: note.title,
+		title: pickNoteTitle(note, locals.locale),
 		createdAt: note.createdAt,
-		html: renderMarkdown(note.bodyMd),
+		html: renderNoteBody(note, locals.locale),
 		tags
 	};
 };

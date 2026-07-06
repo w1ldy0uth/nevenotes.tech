@@ -43,6 +43,20 @@
       "when": 1783298624820,
       "tag": "0005_yielding_azazel",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1783299475769,
+      "tag": "0006_stale_nehzno",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1783299513168,
+      "tag": "0007_dashing_korvac",
+      "breakpoints": true
     }
   ]
 }

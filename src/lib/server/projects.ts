@@ -1,9 +1,6 @@
 import type { Locale } from '$lib/i18n';
+import { pickLocalized } from './localized';
 import { renderMarkdown } from './markdown';
-
-function pickLocalized(en: string | null, ru: string | null, locale: Locale): string | null {
-	return locale === 'ru' ? (ru ?? en) : (en ?? ru);
-}
 
 type LocalizedDescription = {
 	descriptionEn: string | null;
